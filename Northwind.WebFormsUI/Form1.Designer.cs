@@ -28,20 +28,36 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.dgwProducts = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.dgwProducts)).BeginInit();
             this.SuspendLayout();
+            // 
+            // dgwProducts
+            // 
+            this.dgwProducts.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgwProducts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgwProducts.Location = new System.Drawing.Point(12, 41);
+            this.dgwProducts.Name = "dgwProducts";
+            this.dgwProducts.Size = new System.Drawing.Size(664, 343);
+            this.dgwProducts.TabIndex = 0;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(555, 280);
+            this.ClientSize = new System.Drawing.Size(733, 396);
+            this.Controls.Add(this.dgwProducts);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "ÜRÜNLER";
+            this.Load += new System.EventHandler(this.Form1_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dgwProducts)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
+
+        private System.Windows.Forms.DataGridView dgwProducts;
     }
 }
 

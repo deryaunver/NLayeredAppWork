@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Northwind.Business.Concrete;
 
 namespace Northwind.WebFormsUI
 {
@@ -15,6 +16,11 @@ namespace Northwind.WebFormsUI
         public Form1()
         {
             InitializeComponent();
+        }
+        ProductManager _productManager= new ProductManager();
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            dgwProducts.DataSource = _productManager.GetAll();
         }
     }
 }
