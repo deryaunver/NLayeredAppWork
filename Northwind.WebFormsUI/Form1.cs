@@ -42,6 +42,10 @@ namespace Northwind.WebFormsUI
             cbxCategoryId.DisplayMember = "CategoryName";
             cbxCategoryId.ValueMember = "CategoryId";
 
+            cbxCategoryUpdate.DataSource = _categoryService.GetAll();
+            cbxCategoryUpdate.DisplayMember = "CategoryName";
+            cbxCategoryUpdate.ValueMember = "CategoryId";
+
         }
 
         private void LoadProducts()
@@ -87,8 +91,35 @@ namespace Northwind.WebFormsUI
                 QuantityPerUnit = tbxQuantityPerUnit.Text,
                 UnitsInStock = Convert.ToInt16(tbxStockAmount.Text)
             });
-            MessageBox.Show("Ürün Kaydedildi!");
+            MessageBox.Show("Ürün Eklendi!");
             LoadProducts();
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            _productService.Update(new Product
+            {
+                ProductID =Convert.ToInt32(dgwProducts.CurrentRow.Cells[0].Value),
+                CategoryID = Convert.ToInt32(cbxCategoryUpdate.SelectedValue),
+                ProductName = tbxProductNameUpdate.Text,
+                UnitPrice = Convert.ToDecimal(tbxUnitPriceUpdate.Text),
+                QuantityPerUnit = tbxQuantityPerUnitUpdate.Text,
+                UnitsInStock = Convert.ToInt16(tbxUnitsInStockUpdate.Text)
+            });
+            MessageBox.Show("Ürün Güncellendi!");
+            LoadProducts();
+        }
+
+        private void dgwProducts_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var row = dgwProducts.CurrentRow;
+            tbxProductNameUpdate.Text = row.Cells[2].Value.ToString();
+            cbxCategoryUpdate.Text = row.Cells[1].Value.ToString();
+            tbxUnitPriceUpdate.Text = row.Cells[4].Value.ToString();
+            tbxQuantityPerUnitUpdate.Text = row.Cells[3].Value.ToString();
+            tbxUnitsInStockUpdate.Text = row.Cells[5].Value.ToString();
+
+
         }
     }
 }
