@@ -43,12 +43,33 @@ namespace Northwind.Business.Concrete
 
         public void Add(Product product)
         {
-        _productDal.Add(product);
+            try
+            {
+                _productDal.Add(product);
+            }
+            catch (Exception exception)
+            {
+                throw new Exception("Ekleme Gerçekleşemedi!!!");
+            }
         }
 
         public void Update(Product product)
         {
             _productDal.Update(product);
+        }
+
+        public void Delete(Product product)
+        {
+            try
+            {
+                _productDal.Delete(product);
+            }
+            catch (Exception exception)
+            {
+                throw  new  Exception("Silme Gerçekleşemedi!!!");
+            }
+
+          
         }
     }
 }

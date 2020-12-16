@@ -59,6 +59,7 @@
             this.lblUnitPriceUpdate = new System.Windows.Forms.Label();
             this.lblCategoryUpdate = new System.Windows.Forms.Label();
             this.lblProductNameUpdate = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgwProducts)).BeginInit();
             this.gbxCategory.SuspendLayout();
             this.gbxProduct.SuspendLayout();
@@ -135,6 +136,7 @@
             // 
             // gbxAdded
             // 
+            this.gbxAdded.Controls.Add(this.button1);
             this.gbxAdded.Controls.Add(this.btnAdd);
             this.gbxAdded.Controls.Add(this.tbxQuantityPerUnit);
             this.gbxAdded.Controls.Add(this.tbxStockAmount);
@@ -355,6 +357,16 @@
             this.lblProductNameUpdate.TabIndex = 0;
             this.lblProductNameUpdate.Text = "Ürün Adı:";
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(627, 0);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(179, 21);
+            this.button1.TabIndex = 11;
+            this.button1.Text = "Sil";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -414,6 +426,7 @@
         private System.Windows.Forms.Label lblUnitPriceUpdate;
         private System.Windows.Forms.Label lblCategoryUpdate;
         private System.Windows.Forms.Label lblProductNameUpdate;
+        private System.Windows.Forms.Button button1;
     }
 }
 

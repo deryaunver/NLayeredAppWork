@@ -83,16 +83,25 @@ namespace Northwind.WebFormsUI
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            _productService.Add(new Product
+            try
             {
-                CategoryID = Convert.ToInt32(cbxCategoryId.SelectedValue),
-                ProductName = tbxProductName2.Text,
-                UnitPrice = Convert.ToDecimal(tbxUnitPrice.Text),
-                QuantityPerUnit = tbxQuantityPerUnit.Text,
-                UnitsInStock = Convert.ToInt16(tbxStockAmount.Text)
-            });
-            MessageBox.Show("Ürün Eklendi!");
-            LoadProducts();
+                _productService.Add(new Product
+                {
+                    CategoryID = Convert.ToInt32(cbxCategoryId.SelectedValue),
+                    ProductName = tbxProductName2.Text,
+                    UnitPrice = Convert.ToDecimal(tbxUnitPrice.Text),
+                    QuantityPerUnit = tbxQuantityPerUnit.Text,
+                    UnitsInStock = Convert.ToInt16(tbxStockAmount.Text)
+                });
+                MessageBox.Show("Ürün Eklendi!");
+                LoadProducts();
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message);
+            }
+
+          
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
@@ -120,6 +129,30 @@ namespace Northwind.WebFormsUI
             tbxUnitsInStockUpdate.Text = row.Cells[5].Value.ToString();
 
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (dgwProducts.CurrentRow != null)
+                {
+                    _productService.Delete(new Product
+                    {
+                        ProductID = Convert.ToInt32(dgwProducts.CurrentRow.Cells[0].Value),
+                    });
+                    MessageBox.Show("Ürün Silindi!");
+                    LoadProducts();
+                }
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message);
+            }
+
+         
+            
+          
         }
     }
 }
