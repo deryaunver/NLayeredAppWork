@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using FluentValidation;
 using Northwind.Business.Abstract;
+using Northwind.Business.ValidationRules.FluentValidation;
 using Northwind.DataAccess.Abstract;
 using Northwind.DataAccess.Concrete.EntityFramework;
 using Northwind.Entities.Concrete;
@@ -43,14 +45,14 @@ namespace Northwind.Business.Concrete
 
         public void Add(Product product)
         {
-            try
-            {
-                _productDal.Add(product);
-            }
-            catch (Exception exception)
-            {
-                throw new Exception("Ekleme Gerçekleşemedi!!!");
-            }
+            ProductValidator productValidator= new ProductValidator();
+           var result= productValidator.Validate(product);
+           if (result.Errors.Count>0)
+           {
+               throw  new ValidationException(result.Errors);
+           }
+            _productDal.Add(product);
+                
         }
 
         public void Update(Product product)
