@@ -55,5 +55,18 @@ namespace Northwind.WebFormsUI
             }
         
         }
+
+        private void tbxProductName_TextChanged(object sender, EventArgs e)
+        {
+            if (!String.IsNullOrEmpty(tbxProductName.Text))
+            {
+                dgwProducts.DataSource = _productService.GetProductsByProductName(tbxProductName.Text,Convert.ToInt32(cbxCategory.SelectedValue));
+            }
+            else
+            {
+                dgwProducts.DataSource = _productService.GetProductsByCategory(Convert.ToInt32(cbxCategory.SelectedValue));
+            }
+            
+        }
     }
 }

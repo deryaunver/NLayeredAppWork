@@ -31,7 +31,12 @@ namespace Northwind.Business.Concrete
 
         public List<Product> GetProductsByCategory(int categoryId)
         {
-            return _productDal.GetAll(p => p.CategoryID == categoryId).ToList();
+            return _productDal.GetAll(p => p.CategoryID == categoryId);
+        }
+
+        public List<Product> GetProductsByProductName(string productName,int categoryId)
+        {
+            return _productDal.GetAll(p => p.ProductName.ToLower().Contains(productName.ToLower()) && p.CategoryID==categoryId);
         }
     }
 }

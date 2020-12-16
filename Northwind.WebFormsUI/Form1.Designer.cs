@@ -58,7 +58,7 @@
             this.gbxCategory.Size = new System.Drawing.Size(806, 59);
             this.gbxCategory.TabIndex = 1;
             this.gbxCategory.TabStop = false;
-            this.gbxCategory.Text = "Kategoriye Göre Arama:";
+            this.gbxCategory.Text = "Kategoriye Göre Listeleme:";
             // 
             // cbxCategory
             // 
@@ -95,6 +95,7 @@
             this.tbxProductName.Name = "tbxProductName";
             this.tbxProductName.Size = new System.Drawing.Size(404, 20);
             this.tbxProductName.TabIndex = 2;
+            this.tbxProductName.TextChanged += new System.EventHandler(this.tbxProductName_TextChanged);
             // 
             // label2
             // 
