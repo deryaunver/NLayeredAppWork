@@ -14,6 +14,7 @@ namespace Northwind.Business.Concrete
   
     public class ProductManager:IProductService
     {
+        //data access katmanjnı newliyordum 
         private IProductDal _productDal;
 
         public ProductManager(IProductDal productDal)
@@ -28,24 +29,6 @@ namespace Northwind.Business.Concrete
             return _productDal.GetAll();
         }
 
-        public Product Get(int id)
-        {
-            return _productDal.Get(id);
-        }
-
-        public void Add(Product product)
-        {
-            _productDal.Add(product);
-        }
-
-        public void Update(Product product)
-        {
-            _productDal.Update(product);
-        }
-
-        public void Delete(Product product)
-        {
-            _productDal.Delete(product);
-        }
+       
     }
 }
