@@ -106,17 +106,25 @@ namespace Northwind.WebFormsUI
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            _productService.Update(new Product
+            try
             {
-                ProductID =Convert.ToInt32(dgwProducts.CurrentRow.Cells[0].Value),
-                CategoryID = Convert.ToInt32(cbxCategoryUpdate.SelectedValue),
-                ProductName = tbxProductNameUpdate.Text,
-                UnitPrice = Convert.ToDecimal(tbxUnitPriceUpdate.Text),
-                QuantityPerUnit = tbxQuantityPerUnitUpdate.Text,
-                UnitsInStock = Convert.ToInt16(tbxUnitsInStockUpdate.Text)
-            });
-            MessageBox.Show("Ürün Güncellendi!");
-            LoadProducts();
+                _productService.Update(new Product
+                {
+                    ProductID = Convert.ToInt32(dgwProducts.CurrentRow.Cells[0].Value),
+                    CategoryID = Convert.ToInt32(cbxCategoryUpdate.SelectedValue),
+                    ProductName = tbxProductNameUpdate.Text,
+                    UnitPrice = Convert.ToDecimal(tbxUnitPriceUpdate.Text),
+                    QuantityPerUnit = tbxQuantityPerUnitUpdate.Text,
+                    UnitsInStock = Convert.ToInt16(tbxUnitsInStockUpdate.Text)
+                });
+                MessageBox.Show("Ürün Güncellendi!");
+                LoadProducts();
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message);
+            }
+           
         }
 
         private void dgwProducts_CellClick(object sender, DataGridViewCellEventArgs e)

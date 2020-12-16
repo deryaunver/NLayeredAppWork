@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using FluentValidation;
 using Northwind.Business.Abstract;
+using Northwind.Business.Utilities;
 using Northwind.Business.ValidationRules.FluentValidation;
 using Northwind.DataAccess.Abstract;
 using Northwind.DataAccess.Concrete.EntityFramework;
@@ -36,27 +37,29 @@ namespace Northwind.Business.Concrete
             return _productDal.GetAll(p => p.CategoryID == categoryId);
         }
 
-        public List<Product> GetProductsByProductName(string productName,int categoryId)
+        public List<Product> GetProductsByProductName(string productName, int categoryId)
         {
-            return _productDal.GetAll(p => p.ProductName.ToLower().Contains(productName.ToLower())&&p.CategoryID==categoryId);
+            return _productDal.GetAll(p => p.ProductName.ToLower().Contains(productName.ToLower()) && p.CategoryID == categoryId);
         }
 
-   
+
 
         public void Add(Product product)
         {
-            ProductValidator productValidator= new ProductValidator();
-           var result= productValidator.Validate(product);
-           if (result.Errors.Count>0)
-           {
-               throw  new ValidationException(result.Errors);
-           }
+            //ProductValidator productValidator = new ProductValidator();
+            //var result = productValidator.Validate(product);
+            //if (result.Errors.Count > 0)
+            //{
+            //    throw new ValidationException(result.Errors);
+            //}
+            ValidationTool.Validate(new ProductValidator(), product);
             _productDal.Add(product);
-                
+
         }
 
         public void Update(Product product)
         {
+            ValidationTool.Validate(new ProductValidator(), product);
             _productDal.Update(product);
         }
 
@@ -68,10 +71,10 @@ namespace Northwind.Business.Concrete
             }
             catch (Exception exception)
             {
-                throw  new  Exception("Silme Gerçekleşemedi!!!");
+                throw new Exception("Silme Gerçekleşemedi!!!");
             }
 
-          
+
         }
     }
 }
