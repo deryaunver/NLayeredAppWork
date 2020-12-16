@@ -11,8 +11,8 @@ using Northwind.Entities.Concrete;
 namespace Northwind.Business.Concrete
 {
 
-  
-    public class ProductManager:IProductService
+
+    public class ProductManager : IProductService
     {
         //data access katmanjnı newliyordum 
         private IProductDal _productDal;
@@ -36,7 +36,14 @@ namespace Northwind.Business.Concrete
 
         public List<Product> GetProductsByProductName(string productName,int categoryId)
         {
-            return _productDal.GetAll(p => p.ProductName.ToLower().Contains(productName.ToLower()) && p.CategoryID==categoryId);
+            return _productDal.GetAll(p => p.ProductName.ToLower().Contains(productName.ToLower())&&p.CategoryID==categoryId);
+        }
+
+   
+
+        public void Add(Product product)
+        {
+        _productDal.Add(product);
         }
     }
 }
