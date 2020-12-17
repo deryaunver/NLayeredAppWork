@@ -11,8 +11,8 @@ namespace Northwind.Business.DependencyResolvers.Ninject
     {
         public static T GetInstance<T>()
         {
-            var kernal= new  StandardKernel(new BusinessModule());
-            return kernal.Get<T>();
+            var kernel= new  StandardKernel(new BusinessModule());
+            return kernel.Get<T>();
         }
     }
 }
